@@ -111,6 +111,8 @@ public:
      */
     const QString methodString() const { return MethodToString(method()); }
 
+    int statusCode() const { return m_statusCode;};
+
     /*!
      * The method used for the request.
      */
@@ -217,6 +219,7 @@ private:
       return staticMetaObject.enumerator(index).valueToKey(method);
     }
 
+    void setStatusCode(int statusCode) { m_statusCode = statusCode; }
     void setMethod(HttpMethod method) { m_method = method; }
     void setVersion(const QString &version) { m_version = version; }
     void setUrl(const QUrl &url) { m_url = url; }
@@ -225,6 +228,7 @@ private:
 
     QHttpConnection *m_connection;
     HeaderHash m_headers;
+    int m_statusCode;
     HttpMethod m_method;
     QUrl m_url;
     QString m_version;

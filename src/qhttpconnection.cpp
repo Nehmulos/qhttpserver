@@ -113,6 +113,8 @@ int QHttpConnection::HeadersComplete(http_parser *parser)
     QHttpConnection *theConnection = (QHttpConnection *)parser->data;
     Q_ASSERT(theConnection->m_request);
 
+    theConnection->m_request->setStatusCode(parser->status_code);
+
     /** set method **/
     theConnection->m_request->setMethod(static_cast<QHttpRequest::HttpMethod>(parser->method));
 
