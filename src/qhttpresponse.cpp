@@ -143,7 +143,6 @@ void QHttpResponse::writeHead(int status)
     m_connection->write(QString("HTTP/1.1 %1 %2\r\n").arg(status).arg(STATUS_CODES[status]).toLatin1());
     
     writeHeaders();
-
     m_connection->write("\r\n");
     m_headerWritten = true;
 }
@@ -177,9 +176,9 @@ void QHttpResponse::end(const QString &data)
     if(m_finished) {
       return;
     }
-    m_finished = true;
 
     write(data);
+    m_finished = true;
 
     emit done();
     deleteLater();

@@ -94,6 +94,7 @@ public:
       STATUS_HTTP_VERSION_NOT_SUPPORTED = 505
     };
 
+    QHttpResponse(QHttpConnection *connection);
     virtual ~QHttpResponse();
 
 public slots:
@@ -146,7 +147,6 @@ signals:
     void done();
 
 private:
-    QHttpResponse(QHttpConnection *connection);
 
     void writeHeaders();
     void writeHeader(const char *field, const QString &value);
