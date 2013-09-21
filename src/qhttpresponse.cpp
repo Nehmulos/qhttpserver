@@ -65,7 +65,7 @@ void QHttpResponse::writeHeader(const char *field, const QString &value)
     m_connection->write(field);
     m_connection->write(": ");
     m_connection->write(value.toUtf8());
-    m_connection->write("\r\n");
+    m_connection->write("\n");
 }
 
 void QHttpResponse::writeHeaders()
@@ -140,10 +140,10 @@ void QHttpResponse::writeHead(int status)
 
     if( m_headerWritten ) return;
 
-    m_connection->write(QString("HTTP/1.1 %1 %2\r\n").arg(status).arg(STATUS_CODES[status]).toLatin1());
+    m_connection->write(QString("HTTP/1.1 %1 %2\n").arg(status).arg(STATUS_CODES[status]).toLatin1());
     
     writeHeaders();
-    m_connection->write("\r\n");
+    m_connection->write("\n");
     m_headerWritten = true;
 }
 
@@ -168,7 +168,7 @@ void QHttpResponse::write(const QString &data)
       return;
     }
 
-    m_connection->write(data.toUtf8());
+    m_connection->write(data.toLatin1());
 }
 
 void QHttpResponse::end(const QString &data)
