@@ -137,6 +137,12 @@ public slots:
      */
     void setHeader(const QString &field, const QString &value);
 
+    /*!
+     * Flush the socket; send written data.
+     * You only need this when you want to send data
+     * without closing the connection.
+     */
+    void flush();
 signals:
     /*!
      * Emitted once the response is finished.

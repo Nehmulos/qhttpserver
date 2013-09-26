@@ -171,6 +171,14 @@ void QHttpResponse::write(const QString &data)
     m_connection->write(data.toLatin1());
 }
 
+void QHttpResponse::flush()
+{
+    if (m_finished) {
+        return;
+    }
+    m_connection->flush();
+}
+
 void QHttpResponse::end(const QString &data)
 {
     if(m_finished) {
